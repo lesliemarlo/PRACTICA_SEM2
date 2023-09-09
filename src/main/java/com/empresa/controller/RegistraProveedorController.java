@@ -18,7 +18,7 @@ import com.empresa.service.DeporteService;
 import com.empresa.service.ModalidadService;
 
 @Controller
-public class RegistraModalidadController {
+public class RegistraProveedorController {
 	
 	@Autowired
 	private DeporteService deporteService;
@@ -28,7 +28,7 @@ public class RegistraModalidadController {
 	private ModalidadService modalidadService;
 
 		
-	@GetMapping(value = "/verRegistraModalidad" )
+	@GetMapping(value = "/verRegistraProveedor" )
 	public String verModalidad() {return "registraModalidad";}
 	
 	@ResponseBody
