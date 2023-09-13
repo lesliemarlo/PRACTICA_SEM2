@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.empresa.entity.Alumno;
+
 import com.empresa.entity.Deporte;
 import com.empresa.entity.Modalidad;
 import com.empresa.service.DeporteService;

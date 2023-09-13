@@ -11,37 +11,39 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.empresa.entity.Alumno;
-import com.empresa.entity.Deporte;
-import com.empresa.entity.Modalidad;
-import com.empresa.service.DeporteService;
-import com.empresa.service.ModalidadService;
+import com.empresa.entity.Pais;
+import com.empresa.entity.Tipo;
+import com.empresa.entity.Proveedor;
+import com.empresa.service.PaisService;
+import com.empresa.service.ProveedorService;
+import com.empresa.service.TipoService;
 
 @Controller
 public class RegistraProveedorController {
 	
 	@Autowired
-	private DeporteService deporteService;
+	private PaisService paisService;
 	
 	//insertar a modalidad en el controller
 	@Autowired
-	private ModalidadService modalidadService;
+	private ProveedorService proveedorService;
 
 		
 	@GetMapping(value = "/verRegistraProveedor" )
-	public String verModalidad() {return "registraModalidad";}
+	public String verProveedor() {return "registraProveedor";}
 	
 	@ResponseBody
-	@GetMapping(value = "/listaDeporte")
-	public List<Deporte> lista(){
-		return deporteService.listaDeporte();
+	@GetMapping(value = "/listaPais")
+	public List<Pais> lista(){
+		return paisService.listaPais();
 		}
 	
-	@PostMapping("/registraModalidad")
+	
+	@PostMapping("/registraProveedor")
 	@ResponseBody
-	public Map<?, ?> registra(Modalidad obj){
+	public Map<?, ?> registra(Proveedor obj){
 		HashMap<String, String> map = new HashMap<String, String>();
-		Modalidad objSalida = modalidadService.insertaModalidad(obj);
+		Proveedor objSalida = proveedorService.insertaProveedor(obj);
 		if (objSalida == null) {
 			map.put("MENSAJE", "Error en el registro");
 		}else {
@@ -52,11 +54,11 @@ public class RegistraProveedorController {
 	
 	//5
 	
-	@GetMapping("/buscaPorNombreModalidad")
+	@GetMapping("/buscaPorNombreProveedor")
 	@ResponseBody
 	public String validaNombre(String nombre) {
-		List<Modalidad> lstModalidad = modalidadService.listaPorNombre(nombre);
-		if (CollectionUtils.isEmpty(lstModalidad)) {
+		List<Proveedor> lstProveedor = proveedorService.listaPorNombre(nombre);
+		if (CollectionUtils.isEmpty(lstProveedor)) {
 			return "{\"valid\" : true }";
 		} else {
 			return "{\"valid\" : false }";
