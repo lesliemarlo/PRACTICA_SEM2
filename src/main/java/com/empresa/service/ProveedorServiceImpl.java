@@ -23,5 +23,10 @@ public class ProveedorServiceImpl implements ProveedorService{
 	public List<Proveedor> listaPorNombre(String nombre){
 		return repository.findByNombreIgnoreCase(nombre);
 	}
+	
+	@Override
+	public List<Proveedor> listaPorDni(String dni){
+		return repository.findByDniIgnoreCase(dni);
+	}
 
 }

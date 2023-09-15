@@ -25,7 +25,7 @@
 			
 			
 				<div class="form-group col-md-6">
-					<label class="control-label" for="id_nombre">Nombre</label>
+					<label class="control-label" for="id_nombre">Nombre y Apellido</label>
 					<input class="form-control" type="text" id="id_nombre" name="nombre" placeholder="Ingrese el nombre">
 				</div>
 				
@@ -35,7 +35,7 @@
 				</div>
 				
 			<div class="form-group col-md-3">
-					<label class="control-label" for="id_tipo">Deporte</label>
+					<label class="control-label" for="id_tipo">Tipo</label>
 					<select id="id_tipo" name="tipo.idTipo" class='form-control'>
 						<option value=" ">[Seleccione]</option>    
 					</select>
@@ -64,9 +64,16 @@
 
 <script type="text/javascript">
 
-$.getJSON("listaProveedor", {}, function(data){
+$.getJSON("listaTipo", {}, function(data){
 	$.each(data, function(index,item){
-		$("#id_proveedor").append("<option value="+item.idProveedor +">"+ item.nombre +"</option>");
+		$("#id_tipo").append("<option value="+item.idTipo +">"+ item.descripcion +"</option>");
+	});
+});
+
+
+$.getJSON("listaPais", {}, function(data){
+	$.each(data, function(index,item){
+		$("#id_pais").append("<option value="+item.idPais +">"+ item.nombre +"</option>");
 	});
 });
 
@@ -115,8 +122,8 @@ $('#id_form').bootstrapValidator({
                     message: 'El nombre es un campo obligatorio'
                 },
                 stringLength :{
-                	message:'El nombre es de 5 a 100 caracteres',
-                	min : 5,
+                	message:'El nombre es de 3 a 100 caracteres',
+                	min : 3,
                 	max : 100
                 },
                 //agregar6
@@ -136,7 +143,7 @@ $('#id_form').bootstrapValidator({
                 },
                 regexp: {
                     regexp: /^[0-9]{8}$/,
-                    message: 'el dni es 8 dígitos'
+                    message: 'el dni es de 8 dígitos'
                 },
               //agregar6
                 remote:{

@@ -18,6 +18,6 @@ public class Tipo {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idTipo;
-	private String nombre;
+	private String descripcion;
 
 }

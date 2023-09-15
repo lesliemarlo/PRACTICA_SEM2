@@ -25,10 +25,10 @@ public class Proveedor {
 	
 	@ManyToOne
 	@JoinColumn(name = "idTipo")
-	private Deporte tipo;
+	private Tipo tipo;
 	
 	@ManyToOne
 	@JoinColumn(name = "idPais")
-	private Deporte Pais;
+	private Pais pais;
 
 }

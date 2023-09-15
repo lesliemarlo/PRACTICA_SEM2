@@ -22,6 +22,9 @@ import com.empresa.service.TipoService;
 public class RegistraProveedorController {
 	
 	@Autowired
+	private TipoService tipoService;
+	
+	@Autowired
 	private PaisService paisService;
 	
 	//insertar a modalidad en el controller
@@ -33,8 +36,13 @@ public class RegistraProveedorController {
 	public String verProveedor() {return "registraProveedor";}
 	
 	@ResponseBody
+	@GetMapping(value = "/listaTipo")
+	public List<Tipo> lista(){
+		return tipoService.listaTipo();
+		}
+	@ResponseBody
 	@GetMapping(value = "/listaPais")
-	public List<Pais> lista(){
+	public List<Pais> lista1(){
 		return paisService.listaPais();
 		}
 	
@@ -58,6 +66,17 @@ public class RegistraProveedorController {
 	@ResponseBody
 	public String validaNombre(String nombre) {
 		List<Proveedor> lstProveedor = proveedorService.listaPorNombre(nombre);
+		if (CollectionUtils.isEmpty(lstProveedor)) {
+			return "{\"valid\" : true }";
+		} else {
+			return "{\"valid\" : false }";
+		}
+	}
+	
+	@GetMapping("/buscaPorDniProveedor")
+	@ResponseBody
+	public String validaDNI(String dni) {
+		List<Proveedor> lstProveedor = proveedorService.listaPorDni(dni);
 		if (CollectionUtils.isEmpty(lstProveedor)) {
 			return "{\"valid\" : true }";
 		} else {
