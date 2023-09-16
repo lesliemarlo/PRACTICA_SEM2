@@ -1,5 +1,6 @@
 package com.empresa.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,6 +51,11 @@ public class RegistraProveedorController {
 	@PostMapping("/registraProveedor")
 	@ResponseBody
 	public Map<?, ?> registra(Proveedor obj){
+		
+		//añadir fecha automaticamente
+		obj.setFechaRegistro(new Date());
+		
+		//...
 		HashMap<String, String> map = new HashMap<String, String>();
 		Proveedor objSalida = proveedorService.insertaProveedor(obj);
 		if (objSalida == null) {
